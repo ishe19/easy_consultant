@@ -1,3 +1,4 @@
+import 'package:easy_consult/screens/test.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_consult/screens/List.dart';
 
@@ -116,7 +117,9 @@ class _SchoolListState extends State<SchoolList> {
                         style: TextStyle(color: Color(0xFF3792CB), fontSize: 24),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => NavbarClass() ));
+                        },
                         icon: Icon(
                           Icons.search,
                           color: Colors.red,
