@@ -1,8 +1,11 @@
+import 'package:easy_consult/utilities/uidata.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
-import 'UserHome.dart' as userHome;
-import 'List.dart' as list;
+import 'user_home.dart' as userHome;
+import 'active_jobs.dart' as active;
+import 'requests.dart' as request;
+import 'profile.dart' as list;
 
 class NavbarClass extends StatefulWidget {
   @override
@@ -30,10 +33,10 @@ class _NavbarClassState extends State<NavbarClass> with SingleTickerProviderStat
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
 
-    userHome.SchoolList(),
-    userHome.SchoolList(),
-    userHome.SchoolList(),
-    list.ProfileThreePage()
+    userHome.ConsultantList(),
+    active.ActiveJobs(),
+    request.RequestPage(),
+    list.Profile()
   ];
 
 
@@ -46,7 +49,7 @@ class _NavbarClassState extends State<NavbarClass> with SingleTickerProviderStat
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Uidata.primaryColor,
           boxShadow: [
             BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
         ]),
@@ -54,21 +57,23 @@ class _NavbarClassState extends State<NavbarClass> with SingleTickerProviderStat
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: GNav(
-              
+              color: Colors.red,
+              backgroundColor: Uidata.primaryColor,
                 gap: 8,
-                activeColor: Colors.white,
+                activeColor: Colors.black,
                 iconSize: 24,
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 duration: Duration(milliseconds: 800),
-                tabBackgroundColor: Colors.grey[800],
+                tabBackgroundColor: Colors.white,
+                // tabBackgroundColor: Colors.grey[800],
                 tabs: [
                   GButton(
                     icon: LineIcons.home,
                     text: 'Home',
                   ),
                   GButton(
-                    icon: LineIcons.heart_o,
-                    text: 'Likes',
+                    icon: LineIcons.check_circle_o,
+                    text: 'Active',
                   ),
                   GButton(
                     icon: LineIcons.search,

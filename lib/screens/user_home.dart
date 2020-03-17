@@ -1,35 +1,34 @@
-import 'package:easy_consult/screens/test.dart';
+import 'package:easy_consult/utilities/uidata.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_consult/screens/List.dart';
+import 'package:easy_consult/screens/profile.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
+class ConsultantList extends StatefulWidget {
+  ConsultantList({Key key}) : super(key: key);
 
-class SchoolList extends StatefulWidget {
-  SchoolList({Key key}) : super(key: key);
-
-
-  _SchoolListState createState() => _SchoolListState();
+  _ConsultantListState createState() => _ConsultantListState();
 }
 
-class _SchoolListState extends State<SchoolList> {
+class _ConsultantListState extends State<ConsultantList> {
   final TextStyle dropdownMenuItem =
-  TextStyle(color: Colors.black, fontSize: 18);
+      TextStyle(color: Colors.black, fontSize: 18);
 
   final primary = Color(0xFF3792CB);
   final secondary = Color(0xFF0E2433);
 
-  final List<Map> schoolLists = [
+  final List<Map> consultantList = [
     {
       "name": "Ishe Gwanaz",
       "location": "572 Statan , Ruwa",
       "type": "Computer Nerd",
-      "logoText":"assets/logo.png"
+      "logoText": "assets/logo.png"
     },
     {
       "name": "Nyasha Fisher",
       "location": "234 Road Kathmandu, Budaz",
       "type": "Web Dev",
       "logoText": "assets/logo1.png"
-
     },
     {
       "name": "Taps Magaz",
@@ -73,6 +72,30 @@ class _SchoolListState extends State<SchoolList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfff0f0f0),
+      appBar: AppBar(
+        backgroundColor: Uidata.primaryColor,
+        title: Text(
+          "Consultants",
+          style: TextStyle(color: Color(0xFF3792CB), fontSize: 24),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: (){
+
+          },
+          icon: Icon(LineIcons.power_off),
+          color: Colors.red,
+        ),
+        actions: <Widget>[
+          IconButton(
+            onPressed: (){
+
+            },
+            icon: Icon(LineIcons.search),
+            color: Colors.red,
+          )
+        ],
+      ),
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -80,55 +103,67 @@ class _SchoolListState extends State<SchoolList> {
           child: Stack(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(top: 90),
+                padding: EdgeInsets.only(top: 0),
                 height: MediaQuery.of(context).size.height,
                 width: double.infinity,
-                child: ListView.builder(
-                    itemCount: schoolLists.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return buildList(context, index);
-                    }),
+                child: AnimationLimiter(
+                      child: ListView.builder(
+                      itemCount: consultantList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return AnimationConfiguration.staggeredList(
+            position: index,
+            duration: const Duration(milliseconds: 375),
+            child: SlideAnimation(
+              verticalOffset: 10.0,
+              horizontalOffset: 40.0,
+              child: FadeInAnimation(
+                child: buildList(context, index),
               ),
-              Container(
-                height: 100,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: secondary,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => ProfileThreePage()),
-                          );
-                        },
-                        icon: Icon(
-                          Icons.settings_power,
-                          color: Colors.red,
-                        ),
-                      ),
-                      Text(
-                        "Consultants",
-                        style: TextStyle(color: Color(0xFF3792CB), fontSize: 24),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => NavbarClass() ));
-                        },
-                        icon: Icon(
-                          Icons.search,
-                          color: Colors.red,
-                        ),
-                      ),
-                    ],
-                  ),
+            ),
+          );
+                        // return 
+                      }),
                 ),
               ),
+              // Container(
+              //   height: 70,
+              //   width: double.infinity,
+              //   decoration: BoxDecoration(
+              //     color: secondary,
+              //   ),
+              //   child: Padding(
+              //     padding: const EdgeInsets.only(top: 30),
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: <Widget>[
+              //         IconButton(
+              //           onPressed: () {
+              //             Navigator.push(
+              //               context,
+              //               MaterialPageRoute(builder: (context) => Profile()),
+              //             );
+              //           },
+              //           icon: Icon(
+              //             Icons.settings_power,
+              //             color: Colors.red,
+              //           ),
+              //         ),
+              //         Text(
+              //           "Consultants",
+              //           style:
+              //               TextStyle(color: Color(0xFF3792CB), fontSize: 24),
+              //         ),
+              //         IconButton(
+              //           onPressed: () {},
+              //           icon: Icon(
+              //             Icons.search,
+              //             color: Colors.red,
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -157,7 +192,7 @@ class _SchoolListState extends State<SchoolList> {
               borderRadius: BorderRadius.circular(50),
               border: Border.all(width: 3, color: secondary),
               image: DecorationImage(
-                  image: AssetImage(schoolLists[index]['logoText']),
+                  image: AssetImage(consultantList[index]['logoText']),
                   fit: BoxFit.fill),
             ),
           ),
@@ -166,7 +201,7 @@ class _SchoolListState extends State<SchoolList> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  schoolLists[index]['name'],
+                  consultantList[index]['name'],
                   style: TextStyle(
                       color: primary,
                       fontWeight: FontWeight.bold,
@@ -185,7 +220,7 @@ class _SchoolListState extends State<SchoolList> {
                     SizedBox(
                       width: 5,
                     ),
-                    Text(schoolLists[index]['location'],
+                    Text(consultantList[index]['location'],
                         style: TextStyle(
                             color: primary, fontSize: 13, letterSpacing: .3)),
                   ],
@@ -203,7 +238,7 @@ class _SchoolListState extends State<SchoolList> {
                     SizedBox(
                       width: 5,
                     ),
-                    Text(schoolLists[index]['type'],
+                    Text(consultantList[index]['type'],
                         style: TextStyle(
                             color: primary, fontSize: 13, letterSpacing: .3)),
                   ],

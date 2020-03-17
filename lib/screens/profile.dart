@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ProfileThreePage extends StatelessWidget {
+class Profile extends StatelessWidget {
   final primary = Color(0xFF3792CB);
   final secondary = Color(0xFF0E2433);
 

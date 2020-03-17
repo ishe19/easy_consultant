@@ -1,6 +1,5 @@
-import 'package:easy_consult/screens/test.dart';
+import 'package:easy_consult/screens/home.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_consult/screens/UserHome.dart';
 
 
 const TextStyle boldText = TextStyle(
@@ -167,7 +166,7 @@ class SignIn extends StatelessWidget {
               textColor: Colors.white,
               color: Color(0xFF0E2433),
               onPressed: (){
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => NavbarClass()),
                   // MaterialPageRoute(builder: (context) => SchoolList()),

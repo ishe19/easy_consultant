@@ -1,5 +1,5 @@
+import 'package:easy_consult/screens/auth_page.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_consult/screens/AuthPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'easy co',
         theme: ThemeData(
+          scaffoldBackgroundColor: Color(0xfff0f0f0)
 
         ),
         home: AuthPage()
