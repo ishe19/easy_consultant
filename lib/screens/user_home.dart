@@ -1,6 +1,5 @@
 import 'package:easy_consult/utilities/uidata.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_consult/screens/profile.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
@@ -125,45 +124,6 @@ class _ConsultantListState extends State<ConsultantList> {
                       }),
                 ),
               ),
-              // Container(
-              //   height: 70,
-              //   width: double.infinity,
-              //   decoration: BoxDecoration(
-              //     color: secondary,
-              //   ),
-              //   child: Padding(
-              //     padding: const EdgeInsets.only(top: 30),
-              //     child: Row(
-              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //       children: <Widget>[
-              //         IconButton(
-              //           onPressed: () {
-              //             Navigator.push(
-              //               context,
-              //               MaterialPageRoute(builder: (context) => Profile()),
-              //             );
-              //           },
-              //           icon: Icon(
-              //             Icons.settings_power,
-              //             color: Colors.red,
-              //           ),
-              //         ),
-              //         Text(
-              //           "Consultants",
-              //           style:
-              //               TextStyle(color: Color(0xFF3792CB), fontSize: 24),
-              //         ),
-              //         IconButton(
-              //           onPressed: () {},
-              //           icon: Icon(
-              //             Icons.search,
-              //             color: Colors.red,
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

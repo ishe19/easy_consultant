@@ -1,3 +1,4 @@
+import 'package:easy_consult/screens/requests.dart';
 import 'package:easy_consult/utilities/uidata.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -44,6 +45,16 @@ class _NavbarClassState extends State<NavbarClass> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(0.0),
+        child: FloatingActionButton(
+          child: Icon(Icons.add, color: Uidata.btnColor,),
+          backgroundColor: Uidata.primaryColor,
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => MakeRequest()));
+          },
+        ),
+      ),
       body: Container(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -62,7 +73,7 @@ class _NavbarClassState extends State<NavbarClass> with SingleTickerProviderStat
                 gap: 8,
                 activeColor: Colors.black,
                 iconSize: 24,
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                padding: EdgeInsets.symmetric(horizontal: 18, vertical: 5),
                 duration: Duration(milliseconds: 800),
                 tabBackgroundColor: Colors.white,
                 // tabBackgroundColor: Colors.grey[800],
@@ -76,8 +87,8 @@ class _NavbarClassState extends State<NavbarClass> with SingleTickerProviderStat
                     text: 'Active',
                   ),
                   GButton(
-                    icon: LineIcons.search,
-                    text: 'Search',
+                    icon: LineIcons.plus,
+                    text: 'Requests',
                   ),
                   GButton(
                     icon: LineIcons.user,
