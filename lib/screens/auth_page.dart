@@ -168,7 +168,7 @@ class SignIn extends StatelessWidget {
               onPressed: (){
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => NavbarClass()),
+                  MaterialPageRoute(builder: (context) => Home()),
                   // MaterialPageRoute(builder: (context) => SchoolList()),
                 );
               },

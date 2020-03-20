@@ -59,7 +59,10 @@ flutter:
     - assets/contract3.png
     - assets/no-requests.png
     - assets/requesting.png
+    - assets/request.png
+    - assets/requested.png
     - assets/requested1.png
+    - assets/job.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

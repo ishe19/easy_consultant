@@ -211,3 +211,27 @@ class _ConsultantListState extends State<ConsultantList> {
     );
   }
 }
+
+
+class ClientHome extends StatefulWidget {
+  @override
+  _ClientHomeState createState() => _ClientHomeState();
+}
+
+class _ClientHomeState extends State<ClientHome> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home"),
+        leading: IconButton(
+          onPressed: (){
+
+          },
+          icon: Icon(LineIcons.power_off),
+          color: Colors.red,
+        ),
+      ),
+    );
+  }
+}

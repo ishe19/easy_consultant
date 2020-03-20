@@ -8,28 +8,24 @@ import 'active_jobs.dart' as active;
 import 'requests.dart' as request;
 import 'profile.dart' as list;
 
-class NavbarClass extends StatefulWidget {
+class Home extends StatefulWidget {
+
   @override
-  _NavbarClassState createState() => _NavbarClassState();
+  _HomeState createState() => _HomeState();
 }
 
-class _NavbarClassState extends State<NavbarClass> with SingleTickerProviderStateMixin {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
-  TabController inAppTabController;
+
 
   @override
   void initState(){
     super.initState();
-    inAppTabController = new TabController(length: 4, vsync: this);
   }
 
-  @override
-  void dispose(){
-    inAppTabController.dispose();
-    super.dispose();
-  }
 
-  int _selectedIndex = 0;
+  int selectedIndex = 0;
+  
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
@@ -56,7 +52,7 @@ class _NavbarClassState extends State<NavbarClass> with SingleTickerProviderStat
         ),
       ),
       body: Container(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _widgetOptions.elementAt(selectedIndex),
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -95,10 +91,10 @@ class _NavbarClassState extends State<NavbarClass> with SingleTickerProviderStat
                     text: 'Profile',
                   ),
                 ],
-                selectedIndex: _selectedIndex,
+                selectedIndex: selectedIndex,
                 onTabChange: (index) {
                   setState(() {
-                    _selectedIndex = index;
+                    selectedIndex = index;
                   });
                 }),
           ),

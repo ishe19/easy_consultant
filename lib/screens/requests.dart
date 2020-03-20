@@ -231,7 +231,9 @@ class _RequestPageState extends State<RequestPage> {
   }
 }
 
-final formkey = new GlobalKey<FormState> ();
+// =========================================== MAKE  A REQUEST PAGE CODE RESIDES HERE ===================================
+
+final formkey = new GlobalKey<FormState>();
 
 const TextStyle boldText = TextStyle(
   fontWeight: FontWeight.bold,
@@ -243,8 +245,9 @@ class MakeRequest extends StatefulWidget {
 }
 
 class _MakeRequestState extends State<MakeRequest> {
-
   final form = formkey.currentState;
+  int group = 0;
+  String dropdownValue = 'Computing';
 
   @override
   Widget build(BuildContext context) {
@@ -267,71 +270,158 @@ class _MakeRequestState extends State<MakeRequest> {
         backgroundColor: Uidata.primaryColor,
       ),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Form(
-                key: formkey,
-                child: Theme(
-                  data: ThemeData(
-                    brightness: Brightness.dark,
-                    inputDecorationTheme: InputDecorationTheme(
-                      labelStyle: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.0,
-                      )
-                    )
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(10.0),
+              height: 150.0,
+              child: Image(
+                image: AssetImage("assets/request.png"),
+              ),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Card(
+                  child: Form(
+                      key: formkey,
+                      child: Theme(
+                          data: ThemeData(
+                              // brightness: Brightness.dark,
+                              inputDecorationTheme: InputDecorationTheme(
+                                  labelStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20.0,
+                          ))),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Container(
+                              child: Column(
+                                children: <Widget>[
+                                  TextFormField(
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                          borderSide: BorderSide(
+                                            color: Uidata.primaryColor,
+                                          )),
+                                      contentPadding: const EdgeInsets.all(
+                                        16.0,
+                                      ),
+                                      hintText: "What do you need?",
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16.0),
+                                  TextField(
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                          borderSide: BorderSide(
+                                            color: Uidata.primaryColor,
+                                          )),
+                                      hintText:
+                                          "Can you describe what you want?",
+                                      contentPadding: const EdgeInsets.all(
+                                        16.0,
+                                      ),
+                                      prefixStyle: boldText.copyWith(
+                                          color: Colors.black),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16.0),
+                                  TextField(
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                          borderSide: BorderSide(
+                                            color: Uidata.primaryColor,
+                                          )),
+                                      hintText: "What is your budget?",
+                                      contentPadding: const EdgeInsets.all(
+                                        16.0,
+                                      ),
+                                      prefixStyle: boldText.copyWith(
+                                          color: Colors.black),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16.0),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      Text("Category: "),
+                                      DropdownButton<String>(
+                                        value: dropdownValue,
+                                        icon: Icon(Icons.arrow_drop_down),
+                                        iconSize: 24,
+                                        elevation: 16,
+                                        style: TextStyle(
+                                            color: Uidata.secondaryColor),
+                                        underline: Container(
+                                          height: 2,
+                                          color: Uidata.primaryColor,
+                                        ),
+                                        onChanged: (String newValue) {
+                                          setState(() {
+                                            dropdownValue = newValue;
+                                          });
+                                        },
+                                        items: <String>[
+                                          "MANUFACTURING"
+                                              "ENTERTAINMENT & RECREATION"
+                                              "MINING"
+                                              "HEALTH & SOCIAL SERVICES"
+                                              "ACCOMODATION & FOOD SERVICES"
+                                              "UTILITIES"
+                                              "TRANSPORT & WAREHOUSING"
+                                              "INFORMATION TRADE"
+                                              "ADMINSTRATIVE SUPPORT SERVICES"
+                                              "RETAIL"
+                                        ].map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ))),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 16.0,
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: MaterialButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0)),
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoadRequest()));
+                        },
+                        child: Text("Request",
+                            style: TextStyle(color: Colors.white)),
+                        color: Uidata.primaryColor),
                   ),
-                  child: Container(
-                    child: Column(
-                      children: <Widget>[
-                        TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              contentPadding: const EdgeInsets.all(
-                16.0,
-              ),
-              hintText: "Enter Your Email or Phone",
-            ),
-          ),
-          const SizedBox(height: 16.0),
-          TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "Enter Your Password",
-              contentPadding: const EdgeInsets.all(
-                16.0,
-              ),
-              prefixStyle: boldText.copyWith(color: Colors.black),
-            ),
-          ),
-          const SizedBox(height: 16.0),
-          TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "Confirm Your Password",
-              contentPadding: const EdgeInsets.all(
-                16.0,
-              ),
-              prefixStyle: boldText.copyWith(color: Colors.black),
-            ),
-          ),
-                      ],
-                    ),
-                  )
                 )
-              ),
-              RaisedButton(
-                child: Text("Request!"),
-                onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => LoadRequest()));
-                },
-              ),
-            ],
-          ),
+              ],
+            )
+          ],
         ),
       ),
     );
@@ -371,7 +461,7 @@ class _LoadRequestState extends State<LoadRequest> {
           child: Center(
             child: SplashScreen(
               seconds: 5,
-              navigateAfterSeconds: NavbarClass(),
+              navigateAfterSeconds: Home(),
               photoSize: 50.0,
               image: Image.asset("$img"),
             ),
